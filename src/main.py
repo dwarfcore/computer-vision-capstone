@@ -5,7 +5,9 @@ from db_sqlite import (
     list_appearances,
     rename_person,
     set_monitored,
+    delete_person,
 )
+from db_vector import delete_embeddings_for_person
 from face_processing import ensure_folders, run_webcam
 
 
@@ -46,6 +48,7 @@ def main():
         print("5. Mark person as monitored")
         print("6. Unmark person as monitored")
         print("7. Change database mode")
+        print("8. Delete person")
         print("0. Exit")
 
         choice = input("Choose an option: ").strip()
@@ -88,6 +91,17 @@ def main():
 
         elif choice == "7":
             change_database_mode()
+
+        elif choice == "8":
+            person_id = int(input("Enter person ID to delete: ").strip())
+            confirm = input("Are you sure? (y/n): ").strip().lower()
+
+            if confirm == "y":
+                delete_person(person_id)
+                delete_embeddings_for_person(person_id)
+                print("Person deleted successfully.")
+            else:
+                print("Delete cancelled.")
 
         elif choice == "0":
             print("Goodbye.")

@@ -61,3 +61,24 @@ def find_match(embedding):
             best_person_id = person_ids[i]
 
     return best_person_id, best_score
+
+def delete_embeddings_for_person(person_id):
+    embeddings, person_ids = load_vector_db()
+
+    if len(person_ids) == 0:
+        return
+
+    keep_indexes = []
+
+    for i in range(len(person_ids)):
+        if person_ids[i] != person_id:
+            keep_indexes.append(i)
+
+    if len(keep_indexes) == 0:
+        new_embeddings = np.empty((0, 256), dtype=np.float32)
+        new_person_ids = []
+    else:
+        new_embeddings = embeddings[keep_indexes]
+        new_person_ids = [person_ids[i] for i in keep_indexes]
+
+    save_vector_db(new_embeddings, new_person_ids)

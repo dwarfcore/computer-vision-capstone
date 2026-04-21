@@ -132,3 +132,22 @@ def list_appearances():
 
     conn.close()
     return [dict(row) for row in rows]
+
+def delete_person(person_id):
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    # delete appearance history first
+    cur.execute("""
+    DELETE FROM appearances
+    WHERE person_id = ?
+    """, (person_id,))
+
+    # delete person record
+    cur.execute("""
+    DELETE FROM persons
+    WHERE person_id = ?
+    """, (person_id,))
+
+    conn.commit()
+    conn.close()
