@@ -1,0 +1,18 @@
+# ── Core vision ──────────────────────────────────────────────────────────────
+deepface>=0.0.93              # face detection + Facenet embeddings (pure Python, no C++ needed)
+onnxruntime>=1.14.1           # ONNX inference backend used by deepface (pure Python wheel)
+opencv-python>=4.8.0          # webcam capture, image processing
+Pillow>=10.0.0                # PIL for tkinter image display
+
+# ── Databases ────────────────────────────────────────────────────────────────
+chromadb>=0.4.0               # vector DB (local, no server needed)
+
+# Optional remote vector DB — uncomment as needed:
+# qdrant-client>=1.7.0        # self-hosted Qdrant
+# pinecone-client>=3.0.0      # Pinecone cloud
+
+# Optional remote relational DB — uncomment as needed:
+# psycopg2-binary>=2.9.0      # PostgreSQL (remote / Supabase cloud)
+
+# ── Utilities ────────────────────────────────────────────────────────────────
+numpy>=1.24.0
