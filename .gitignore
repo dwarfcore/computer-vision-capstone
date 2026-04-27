@@ -1,0 +1,8 @@
+﻿__pycache__/
+*.py[cod]
+*.pyc
+data/
+config.json
+.deepface/
+venv/
+.env
